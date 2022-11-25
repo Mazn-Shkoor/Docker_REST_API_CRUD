@@ -26,7 +26,7 @@
 
 
 
-Easy PHP MySQL development with Docker and Docker Compose.
+### Easy PHP MySQL development with Docker and Docker Compose.
 
 With this project you can quickly run the following:
 
