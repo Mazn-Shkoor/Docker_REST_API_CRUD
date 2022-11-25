@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
  
 services:
     php:
@@ -18,25 +18,26 @@ services:
             - db
  
     nginx:
-        image: nginx:1.17
+        build:
+            context: ./config/nginx
         ports:
-            - 80:80
+            - 8080:80
         volumes:
             - ./web:/srv/www/api
             - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
         depends_on:
             - php
  
-    pma:
-        image: phpmyadmin/phpmyadmin
-        environment:
-            PMA_HOST: db
-            PMA_PORT: 3306
-            MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
-        ports:
-            - ${IP}:8000:80
-        links:
-            - db:db
+    # pma:
+    #     image: phpmyadmin/phpmyadmin
+    #     environment:
+    #         PMA_HOST: db
+    #         PMA_PORT: 3306
+    #         MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+    #     ports:
+    #         - ${IP}:8000:80
+    #     links:
+    #         - db:db
 
     db:
         image: mysql:latest
