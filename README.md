@@ -1,5 +1,31 @@
 # PHP REST API - CRUD
 
+### Topics covered in this project
+
+- Basic REST API routing and URLs
+- List, show, create, update and delete database records using a RESTful API
+- Best-practice code organisation
+- Controllers and table gateways
+- Relevant HTTP status codes
+- Data validation
+- JSON decoding and encoding
+
+### API Endpoints 
+
+- GET: localhost:8080/prodcuts => list all products.
+
+- GET: localhost:8080/prodcuts/10 => show product with id (10). 
+
+- POST: localhost:8080/prodcuts => show product with id (10)
+  - note: to add product using POST request, you need to add query parameter to the URL. Ex: localhost:8080/prodcuts?name="item one"&size=20&is_available=1
+
+- PATCH: localhost:8080/prodcuts/10 => update product with id (10)
+  - note: to update product using PATCH request, you need to add query parameter to the URL. Ex: localhost:8080/prodcuts/10?name="item two"&size=30&is_available=0
+
+- DELETE: localhost:8080/prodcuts/10 => delete product with id (10)
+
+
+
 Easy PHP MySQL development with Docker and Docker Compose.
 
 With this project you can quickly run the following:
@@ -72,27 +98,4 @@ docker-compose down
 You may find the SQL script under database.sql file in the root directory.
 
 
-### Topics covered in this project
-
-- Basic REST API routing and URLs
-- List, show, create, update and delete database records using a RESTful API
-- Best-practice code organisation
-- Controllers and table gateways
-- Relevant HTTP status codes
-- Data validation
-- JSON decoding and encoding
-
-### API Endpoints 
-
-- GET: localhost:8080/prodcuts => list all products.
-
-- GET: localhost:8080/prodcuts/10 => show product with id (10). 
-
-- POST: localhost:8080/prodcuts => show product with id (10)
-  - note: to add product using POST request, you need to add query parameter to the URL. Ex: localhost:8080/prodcuts?name="item one"&size=20&is_available=1
-
-- PATCH: localhost:8080/prodcuts/10 => update product with id (10)
-  - note: to update product using PATCH request, you need to add query parameter to the URL. Ex: localhost:8080/prodcuts/10?name="item two"&size=30&is_available=0
-
-- DELETE: localhost:8080/prodcuts/10 => delete product with id (10)
 
