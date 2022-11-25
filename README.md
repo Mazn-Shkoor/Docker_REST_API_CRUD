@@ -1,4 +1,4 @@
-# Docker NGINX PHP MySQL PhpMyadmin
+# PHP REST API - CRUD
 
 Easy PHP MySQL development with Docker and Docker Compose.
 
@@ -6,7 +6,6 @@ With this project you can quickly run the following:
 
 - [NGINX](https://hub.docker.com/_/nginx)
 - [PHP](https://hub.docker.com/_/php)
-- [phpMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
 - [MySQL](https://hub.docker.com/_/mysql/)
 
 Contents:
@@ -22,7 +21,6 @@ Make sure you have the latest versions of **Docker** and **Docker Compose** inst
 
 Clone this repository or copy the files from this repository into a new folder. In the **docker-compose.yml** file you may change the IP address (in case you run multiple containers) or the database from MySQL to MariaDB.
 
-Make sure to [add your user to the `docker` group](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user) when using Linux.
 
 ## Configuration
 
@@ -33,7 +31,7 @@ Edit the `.env` file to change the default IP address, MySQL root password and D
 Open a terminal and `cd` to the folder in which `docker-compose.yml` is saved and run:
 
 ```
-docker-compose up
+docker-compose up -d
 ```
 
 This creates two new folders next to your `docker-compose.yml` file.
@@ -41,7 +39,7 @@ This creates two new folders next to your `docker-compose.yml` file.
 * `data` – used to store and restore database dumps and initial databse for import
 * `web` – the location of your php application files
 
-The containers are now built and running. You should be able to access the WordPress installation with the configured IP in the browser address. By default it is `http://127.0.0.1`.
+The containers are now built and running. You should be able to access the WordPress installation with the configured IP in the browser address. By default it is `http://127.0.0.1` or localhost:8080.
 
 For convenience you may add a new entry into your hosts file.
 
@@ -67,39 +65,34 @@ To stop and remove all the containers use the`down` command:
 
 ```
 docker-compose down
-```
-
-Use `-v` if you need to remove the database volume which is used to persist the database:
 
 ```
-docker-compose down -v
-```
+### Run SQL Script in the database to create the required table
 
-### Project from existing source
-
-Copy the `docker-compose.yml` file into a new directory. In the directory you create two folders:
-
-* `data` – here you add the database dump or paste to init.sql
-* `web` – here you copy your existing php project files
-
-You can now use the `up` command:
-
-```
-docker-compose up
-```
-
-This will create the containers and populate the database with the given dump.
+You may find the SQL script under database.sql file in the root directory.
 
 
-### Creating database dumps
+### Topics covered in this project
 
-```
-./export.sh
-```
+Basic REST API routing and URLs
+List, show, create, update and delete database records using a RESTful API
+Best-practice code organisation
+Controllers and table gateways
+Relevant HTTP status codes
+Data validation
+JSON decoding and encoding
 
+### API Endpoints 
 
-### phpMyAdmin
+GET: localhost:8080/prodcuts => list all products.
 
-You can also visit `http://127.0.0.1:8000` to access phpMyAdmin after starting the containers.
+GET: localhost:8080/prodcuts/10 => show product with id (10). 
 
-The default username is `root`, and the password is the same as supplied in the `.env` file.
+POST: localhost:8080/prodcuts => show product with id (10)
+note: to add product using POST request, you need to add query parameter to the URL. Ex: localhost:8080/prodcuts?name="item one"&size=20&is_available=1
+
+PATCH: localhost:8080/prodcuts/10 => update product with id (10)
+note: to update product using PATCH request, you need to add query parameter to the URL. Ex: localhost:8080/prodcuts/10?name="item two"&size=30&is_available=0
+
+DELETE: localhost:8080/prodcuts/10 => delete product with id (10)
+
